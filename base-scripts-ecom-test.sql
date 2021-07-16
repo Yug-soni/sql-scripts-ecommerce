@@ -1,8 +1,26 @@
 create table admin_user
 (
-    `key`    varchar(10) not null,
-    password varchar(10) not null
+    id       bigint auto_increment,
+    email    varchar(100) null,
+    password varchar(100) null,
+    constraint admin_user_id_uindex
+        unique (id)
 );
+
+alter table admin_user
+    add primary key (id);
+
+create table app_user
+(
+    id       bigint auto_increment,
+    email    varchar(100) not null,
+    password varchar(100) not null,
+    constraint app_user_id_uindex
+        unique (id)
+);
+
+alter table app_user
+    add primary key (id);
 
 create table category
 (
@@ -23,6 +41,7 @@ create table product
     serial_number varchar(14)  not null,
     product_name  varchar(100) not null,
     display_name  varchar(50)  not null,
+    main_image    varchar(500) null,
     constraint product_product_id_uindex
         unique (product_id),
     constraint product_serial_number_uindex
